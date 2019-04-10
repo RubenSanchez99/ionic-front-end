@@ -21,7 +21,7 @@ export class CatalogItem {
     public name: string,
     public description: string,
     public price: number,
-    public pictureFileName: string,
+    public PictureFileName: string,
     public pictureUri: string,
     public catalogTypeId: number,
     public catalogBrandId: number
@@ -36,4 +36,11 @@ export interface CatalogType {
 export interface CatalogBrand {
   id: string;
   brand: string;
+}
+
+export interface Image {
+  name: string;
+  path: string;
+  filePath: string;
+  blob?: Blob;
 }

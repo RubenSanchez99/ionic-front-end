@@ -33,6 +33,18 @@
           <ion-select-option *ngFor="let catalogbrand of brands" [value]="catalogbrand.id">{{catalogbrand.brand}}</ion-select-option>
         </ion-select>
     </ion-item>
+    <ion-button color="primary" expand="full" (click)="selectImage()">
+      <ion-icon slot="start" name="camera"></ion-icon>
+      Select Image
+    </ion-button>
+    <ion-item *ngIf="img.path != ''">
+      <ion-thumbnail slot="start"><ion-img [src]="img.path"></ion-img></ion-thumbnail>
+      
+      <ion-label>{{img.name}}</ion-label>
+      <ion-button slot="end" fill="clear" (click)="deleteImage(img)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
     <ion-button color="primary" expand="full" type="submit" [disabled]="!form.valid">Save</ion-button>
   </form>
 </ion-content>

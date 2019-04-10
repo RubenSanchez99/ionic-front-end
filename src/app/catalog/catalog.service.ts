@@ -18,27 +18,33 @@ export class CatalogService {
 
   getCatalogItem(Id: string): Observable<CatalogItem> {
     return this.http
-      .get<CatalogItem>(`http://localhost:5101/api/v1/catalog/items/${Id}`)
+      .get<CatalogItem>(`http://10.0.2.2:5101/api/v1/catalog/items/${Id}`)
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  addProduct(product: CatalogItem): Observable<any> {
+  addProduct(
+    product: CatalogItem,
+    file: Blob,
+    fileName: string
+  ): Observable<any> {
     console.log(JSON.stringify(product));
+    const formData: FormData = new FormData();
+    product.PictureFileName = fileName;
+    for ( const key in product ) {
+      formData.append(key, product[key]);
+    }
+    console.log(JSON.stringify(product));
+    formData.append("file", file, fileName);
+
     return this.http
-      .post(
-        "http://localhost:5101/api/v1/catalog/items",
-        JSON.stringify(product),
-        {
-          headers: this.header
-        }
-      )
+      .post("http://10.0.2.2:5101/api/v1/catalog/items", formData)
       .pipe(catchError(error => this._handleError(error)));
   }
 
   updateProduct(product: CatalogItem): Observable<any> {
     return this.http
       .put(
-        `http://localhost:5101/api/v1/catalog/items`,
+        `http://10.0.2.2:5101/api/v1/catalog/items`,
         JSON.stringify(product),
         { headers: this.header }
       )
@@ -47,19 +53,19 @@ export class CatalogService {
 
   getCatalogTypes(): Observable<CatalogType[]> {
     return this.http
-      .get<CatalogType[]>("http://localhost:5101/api/v1/catalog/CatalogTypes")
+      .get<CatalogType[]>("http://10.0.2.2:5101/api/v1/catalog/CatalogTypes")
       .pipe(catchError(error => this._handleError(error)));
   }
 
   getCatalogBrands(): Observable<CatalogBrand[]> {
     return this.http
-      .get<CatalogBrand[]>("http://localhost:5101/api/v1/catalog/CatalogBrands")
+      .get<CatalogBrand[]>("http://10.0.2.2:5101/api/v1/catalog/CatalogBrands")
       .pipe(catchError(error => this._handleError(error)));
   }
 
   getCatalogItems(): Observable<CatalogData> {
     return this.http
-      .get<CatalogData>("http://localhost:5101/api/v1/catalog/items")
+      .get<CatalogData>("http://10.0.2.2:5101/api/v1/catalog/items")
       .pipe(catchError(error => this._handleError(error)));
   }
 
