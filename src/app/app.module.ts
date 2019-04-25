@@ -20,6 +20,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { PublicModule } from './public/public.module';
 import { MembersModule } from './members/members.module';
+import { MapModule } from './map/map.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,8 @@ import { MembersModule } from './members/members.module';
     HttpClientModule,
     IonicStorageModule.forRoot(),
     PublicModule,
-    MembersModule
+    MembersModule,
+    MapModule
   ],
   providers: [
     StatusBar,
