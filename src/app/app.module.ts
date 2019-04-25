@@ -18,6 +18,8 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
  
 import { IonicStorageModule } from '@ionic/storage';
+import { PublicModule } from './public/public.module';
+import { MembersModule } from './members/members.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +30,9 @@ import { IonicStorageModule } from '@ionic/storage';
     AppRoutingModule,
     CatalogModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    PublicModule,
+    MembersModule
   ],
   providers: [
     StatusBar,
