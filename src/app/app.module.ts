@@ -12,15 +12,20 @@ import { CatalogModule } from "./catalog/catalog.module";
 
 import { HttpClientModule } from "@angular/common/http";
 
-import { Camera } from '@ionic-native/camera/ngx';
-import { File } from '@ionic-native/file/ngx';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { FilePath } from '@ionic-native/file-path/ngx';
- 
-import { IonicStorageModule } from '@ionic/storage';
-import { PublicModule } from './public/public.module';
-import { MembersModule } from './members/members.module';
-import { MapModule } from './map/map.module';
+import { Camera } from "@ionic-native/camera/ngx";
+import { File } from "@ionic-native/file/ngx";
+import { WebView } from "@ionic-native/ionic-webview/ngx";
+import { FilePath } from "@ionic-native/file-path/ngx";
+
+import { IonicStorageModule } from "@ionic/storage";
+import { PublicModule } from "./public/public.module";
+import { MembersModule } from "./members/members.module";
+import { MapModule } from "./map/map.module";
+
+import { AngularFireModule } from "@angular/fire";
+import { environment } from "../environments/environment";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { Firebase } from "@ionic-native/firebase/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +39,9 @@ import { MapModule } from './map/map.module';
     IonicStorageModule.forRoot(),
     PublicModule,
     MembersModule,
-    MapModule
+    MapModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [
     StatusBar,
@@ -43,7 +50,8 @@ import { MapModule } from './map/map.module';
     Camera,
     File,
     WebView,
-    FilePath
+    FilePath,
+    Firebase
   ],
   bootstrap: [AppComponent]
 })
